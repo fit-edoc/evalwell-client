@@ -160,19 +160,43 @@ const Dashboard = () => {
           </button>
         </div>
       ) : report ? (
-        <div className="report">
-          <h2 className="text-xl font-bold mb-2">Your Report</h2>
-          <p><strong>Score:</strong> {report.evaluation.score}</p>
-          <p><strong>severity:</strong> {report.evaluation.severity}</p>
-          <p><strong>analysis</strong> :{report.report.message}</p>
-          <strong>recommendations:{report.report.recommendations.map(item=>(<p>{item}</p>))}</strong>
-          <button
-            onClick={restartTest}
-            className="mt-4 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
-          >
-            Retake Test
-          </button>
-        </div>
+        <div className="report overflow-x-auto capitalize">
+  <h2 className="text-xl font-bold mb-4">Your Report</h2>
+  <table className="table-auto border-collapse border border-gray-300 w-full">
+    <tbody>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2 font-semibold">Score</td>
+        <td className="border border-gray-300 px-4 py-2">{report.evaluation.score}</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2 font-semibold">Severity</td>
+        <td className="border border-gray-300 px-4 py-2">{report.evaluation.severity}</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2 font-semibold">Analysis</td>
+        <td className="border border-gray-300 px-4 py-2">{report.report.message}</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 px-4 py-2 font-semibold">Recommendations</td>
+        <td className="border border-gray-300 px-4 py-2">
+          <ul className="list-disc list-inside">
+            {report.report.recommendations.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button
+    onClick={restartTest}
+    className="mt-4 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+  >
+    Retake Test
+  </button>
+</div>
+
       ) : (
         <div className="question">
           <h3 className="text-lg font-semibold mb-4">
