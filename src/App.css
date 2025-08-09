@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.land{
+    background-color: #ffe6e6;
+background-image: radial-gradient(at 85% 38%, #ffe6e6 0%, transparent 60%), radial-gradient(at 64% 20%, #e1afd1 0%, transparent 50%), radial-gradient(at 41% 94%, #ad88c6 0%, transparent 40%), radial-gradient(at 44% 79%, #7469b6 0%, transparent 30%);
+}
+
+@font-face {
+    font-family: hero;
+    src: url('./assets/RobotoMono-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: logo;
+    src: url('./assets/BebasNeue-Regular.ttf');
+}
+
+@font-face {
+    font-family: head;
+    src: url('./assets/Jost-Black.ttf');
+}
