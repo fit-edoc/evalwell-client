@@ -76,20 +76,24 @@ const Dashboard = () => {
   const [responses, setResponses] = useState([]);
   const [report, setReport] = useState(null);
 
+   
+  const [loader ,setLoader] = useState(false)
+
   const handleAnswer = (answerIndex) => {
     const newResponse = {
       questionId: questions[currentIndex].id,
-      answer: answerIndex + 1 // Your backend expects 1-based index
+      answer: answerIndex + 1 
     };
 
     const updatedResponses = [...responses, newResponse];
     setResponses(updatedResponses);
 
-    // Submit if last question
+   
     if (currentIndex === questions.length - 1) {
       submitAnswers(updatedResponses);
     } else {
       setCurrentIndex(currentIndex + 1);
+      setLoader(false)
     }
   };
 
@@ -97,6 +101,7 @@ const Dashboard = () => {
   
 
    const submitAnswers = async (responses) => {
+    setLoader(true)
     try {
       const res = await axios.post(
         'https://evalcore-server.onrender.com/eval/submit',
@@ -112,9 +117,12 @@ const Dashboard = () => {
       console.error("Submission error:", err);
       calculateLocalReport(responses);
     }
+    finally{
+      setLoader(false)
+    }
   };
 
-  // Client-side fallback scoring
+ 
   const calculateLocalReport = (responses) => {
     let totalScore = 0;
     responses.forEach(response => {
@@ -154,7 +162,7 @@ const Dashboard = () => {
           <h1 className="text-2xl font-head mb-4">Mental Health Assessment</h1>
           <button
             onClick={() => setTestStarted(true)}
-            className="px-6 py-2 bg-lime-500 text-white shadow-md shadow-black rounded-lg hover:bg-blue-700"
+            className="px-6 py-2 bg-[#ff92ef] text-black shadow-md shadow-black rounded-lg hover:bg-blue-700"
           >
             Begin Test
           </button>

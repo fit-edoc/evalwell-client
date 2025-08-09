@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [token, setToken] = useState(localStorage.getItem('token'));
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
 
@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
   // };
 
   const register = async (userData) => {
+    setLoading(true)
     try {
       const res = await axios.post('https://evalcore-server.onrender.com/auth/register', userData);
       setToken(res.data.token);
@@ -42,9 +43,13 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       throw err.response?.data?.error || 'Registration failed';
     }
+    finally{
+      setLoading(false)
+    }
   };
 
   const login = async (credentials) => {
+    setLoading(true)
     try {
       const res = await axios.post('https://evalcore-server.onrender.com/auth/login', credentials);
          localStorage.setItem('token', res.data.data.token);
@@ -65,7 +70,11 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       throw err.response?.data?.error || 'Login failed';
     }
+    finally{
+      setLoading(false)
+    }
   };
+  
 
   const logout = () => {
     localStorage.removeItem('token');

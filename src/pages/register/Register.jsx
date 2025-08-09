@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import ThreeDotLoader from '../../components/ThreeDotLoader';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ export default function Register() {
     role: 'patient'
   });
   const [error, setError] = useState('');
-  const { register } = useAuth();
+  const { register,loading } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -101,7 +102,7 @@ export default function Register() {
             type="submit"
             className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gradient-to-r from-[#e7a4ff] to-[#ffffff] hover:text-black"
           >
-            Register
+           {loading ? <ThreeDotLoader/> : "Register"}
           </button>
         </form>
 
