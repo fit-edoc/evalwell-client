@@ -6,10 +6,10 @@ export function Footer() {
     <footer className="bg-neutral-900 text-gray-300 h-[100px]">
       <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center md:py-8 justify-between">
         <div className="flex items-center space-x-4 mb-4 md:mb-0">
-          <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+          <a href="https://github.com/fit-edoc/evalcore-server" target="_blank" rel="noopener noreferrer" className="hover:text-white">
             <FaGithub size={24} />
           </a>
-          <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+          <a href="https://www.linkedin.com/in/himanshu-verma-6b4a94329/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
             <FaLinkedin size={24} />
           </a>
         </div>
