@@ -67,7 +67,7 @@ const questions = [
 
 const Dashboard = () => {
 
- 
+ const {user} = useAuth()
 
  const token = localStorage.getItem('token')
  
@@ -203,6 +203,7 @@ const Dashboard = () => {
   >
     Retake Test
   </button>
+  <b className='capitalize ml-[150px] text-2xl font-thin underline'>{user.data.name}</b>
 </div>
 
       ) : (
