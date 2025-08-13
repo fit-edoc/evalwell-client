@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 
@@ -7,9 +7,12 @@ const Nav = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+  const {pathname }= useLocation();
+  
+const login = pathname === '/login'
   const handleLogout = () => {
     logout();
-    navigate("/login"); // Redirect to login page after logout
+    navigate("/login"); 
   };
 
   
@@ -30,13 +33,13 @@ const Nav = () => {
       <p className="capitalize font-bold">{user.data.name}</p>
        <button 
           onClick={handleLogout}
-          className="px-3 py-2 backdrop-blur-lg bg-gradient-to-r from-[#efc2ff] to-[#ffffff] shadow-sm shadow-[#000] rounded-lg font-hero"
+          className="px-2 py-1 backdrop-blur-lg bg-gradient-to-r from-[#efc2ff] to-[#ffffff] shadow-sm shadow-[#000] rounded-lg font-hero"
         >
           Logout
         </button>  </div>
       ) : (
         <Link to="/login">
-          <button className="px-3 py-2 shadow-sm shadow-[#000000] backdrop-blur-lg bg-gradient-to-r from-[#efc2ff] to-[#ffffff] rounded-lg font-hero">
+          <button className={`px-2 py-1 shadow-sm shadow-[#000000] backdrop-blur-lg  rounded-lg font-hero ${ login ? "bg-[#ffb0f6]" :"bg-gradient-to-r from-[#efc2ff] to-[#ffffff]"}`} >
             Login
           </button>
         </Link>
